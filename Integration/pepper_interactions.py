@@ -97,3 +97,8 @@ def say_multiple_texts(pepper, texts):
             play_audio(text)
     else:
         print("Error: El input no es una lista de textos.")
+
+def say_recomend_subject(subject1, subject2, subject3):
+    # Crear un mensaje de recomendación
+    recommendation = f"Based on your preferences, I recommend the following subjects: {subject1}, {subject2}, and {subject3}."
+    play_audio(recommendation)
