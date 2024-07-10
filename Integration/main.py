@@ -2,8 +2,9 @@ import cv2
 import qibullet
 import threading
 from face_detection import detect_faces_and_greet
-from pepper_interactions import wave_hand_and_say_text, say_text, gesture_hand_and_say_text
+from pepper_interactions import wave_hand_and_say_text, say_text, gesture_hand_and_say_text, say_recomend_subject
 from rasa_interactions import get_rasa_response
+from bayesian_nt import recommend_subjects
 
 #Funcionalily is not workng as expected cause we can't get the first word of the response.
 def update_user_data(user_data, entities):
@@ -24,16 +25,20 @@ def update_pref(user_preferences, first_word):
     #as dict
    
     
-    if first_word in ["AI", "Matemathics", "Software", "Autonomous"]:
+    if first_word in ["AI", "Mathematics", "Software", "Autonomous"]:
         user_preferences["subject"] = first_word
-    elif first_word in ["Robots", "Artificial"]:
+    elif first_word in ["Robotics", "Artificial"]:
         user_preferences["work"] = first_word
-    elif first_word in ["Morning", "Afternoon"]:
+    elif first_word in ["morning", "afternoon"]:
         user_preferences["schedule"] = first_word
-    elif first_word in ["Winter", "Summer"]:
+    elif first_word in ["winter", "summer"]:
         user_preferences["semester"] = first_word
 
     return user_preferences
+
+def all_preferences_set(preferences):
+    #verify if all values are not None
+    return all(value is not None for value in preferences.values())
 
 def conversation_loop(pepper):
     #user_data = {"subject": None, "work": None, "schedule": None, "semester": None}
@@ -60,10 +65,19 @@ def conversation_loop(pepper):
             # Si hay más textos, se manejan individualmente con say_text
             for response_text in response_texts[1:]:
                 say_text(pepper, response_text)
+        
+        if all_preferences_set(user_preferences):
+            #recommend subjects
+            subj1, sub2, sub3=recommend_subjects(user_preferences)
+            say_recomend_subject(subj1, sub2, sub3)
+            
+            print("All preferences are set.")
 
 
+            break
 
         #print(user_data)
+    return user_preferences
 
 
 def main():
