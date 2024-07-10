@@ -1,0 +1,89 @@
+network "ElectiveRecommendation" {
+// written by aGrUM 1.14.1
+}
+
+variable FavoriteSubject {
+   type discrete[4] {AI, MRC, AST, AMR};
+}
+
+variable WorkPreference {
+   type discrete[2] {AI, Robotics};
+}
+
+variable Semester {
+   type discrete[2] {winter, summer};
+}
+
+variable Schedule {
+   type discrete[2] {morning, afternoon};
+}
+
+variable ElectivePreference {
+   type discrete[4] {EP_AI, EP_MRC, EP_AST, EP_AMR};
+}
+
+variable ElectivesAvailable {
+   type discrete[14] {Bayesian_Inference_and_Gaussian_Process, Natural_Language_Processing, Deep_Learning_for_Robot_Vision, Deep_Learning_Foundations, Probabilistic_Reasoning, Robot_Manipulation, Entrepreneurship_in_Robotics_and_Computer_Science, Human_centered_interaction_in_robotics, Advanced_Control, Cognitive_Robotics, Multiagent_and_Agent_Systems, Learning_and_Adaptivity, Adaptive_Signal_Processing, Evolutionary_Computation_Theory_and_Application};
+}
+
+variable RecommendedElectives {
+   type discrete[14] {Bayesian_Inference_and_Gaussian_Process, Natural_Language_Processing, Deep_Learning_for_Robot_Vision, Deep_Learning_Foundations, Probabilistic_Reasoning, Robot_Manipulation, Entrepreneurship_in_Robotics_and_Computer_Science, Human_centered_interaction_in_robotics, Advanced_Control, Cognitive_Robotics, Multiagent_and_Agent_Systems, Learning_and_Adaptivity, Adaptive_Signal_Processing, Evolutionary_Computation_Theory_and_Application};
+}
+
+probability (FavoriteSubject) {
+   table 0 0 0 0;
+}
+probability (WorkPreference) {
+   table 0 0;
+}
+probability (Semester) {
+   table 0 0;
+}
+probability (Schedule) {
+   table 0 0;
+}
+probability (ElectivePreference | FavoriteSubject, WorkPreference) {
+   (AI, AI) 0.7 0.1 0.15 0.05;
+   (MRC, AI) 0.25 0.5 0.05 0.2;
+   (AST, AI) 0.1 0.05 0.8 0.05;
+   (AMR, AI) 0.3 0.15 0.05 0.5;
+   (AI, Robotics) 0.5 0.2 0.1 0.2;
+   (MRC, Robotics) 0.2 0.4 0.1 0.3;
+   (AST, Robotics) 0.05 0.3 0.35 0.3;
+   (AMR, Robotics) 0.1 0.25 0.05 0.6;
+}
+probability (ElectivesAvailable | ElectivePreference, Semester, Schedule) {
+   (EP_AI, winter, morning) 0.09 0.4 0 0 0.05 0.05 0 0 0 0 0 0 0 0;
+   (EP_MRC, winter, morning) 0.4 0.05 0 0 0.05 0.05 0 0 0 0 0 0 0 0;
+   (EP_AST, winter, morning) 0.1 0.1 0 0 0.1 0.05 0 0 0 0 0 0 0 0;
+   (EP_AMR, winter, morning) 0.2 0.05 0 0 0.3 0.5 0 0 0 0 0 0 0 0;
+   (EP_AI, summer, morning) 0 0 0 0 0 0 0 0.1 0.1 0 0.6 0 0 0;
+   (EP_MRC, summer, morning) 0 0 0 0 0 0 0 0.2 0.6 0 0.2 0 0 0;
+   (EP_AST, summer, morning) 0 0 0 0 0 0 0 0.1 0.1 0 0.4 0 0 0;
+   (EP_AMR, summer, morning) 0 0 0 0 0 0 0 0.6 0.2 0 0.05 0 0 0;
+   (EP_AI, winter, afternoon) 0 0 0.4 0.4 0 0 0.1 0 0 0 0 0 0 0;
+   (EP_MRC, winter, afternoon) 0 0 0 0 0 0 0.01 0 0 0 0 0 0 0;
+   (EP_AST, winter, afternoon) 0 0 0.3 0.07 0 0 0.1 0 0 0 0 0 0 0;
+   (EP_AMR, winter, afternoon) 0 0 0 0 0 0 0.2 0 0 0 0 0 0 0;
+   (EP_AI, summer, afternoon) 0 0 0 0 0 0 0 0 0 0.05 0 0.4 0.05 0.4;
+   (EP_MRC, summer, afternoon) 0 0 0 0 0 0 0 0 0 0.3 0 0.05 0.6 0.05;
+   (EP_AST, summer, afternoon) 0 0 0 0 0 0 0 0.025 0.025 0.025 0.025 0.4 0.025 0.3;
+   (EP_AMR, summer, afternoon) 0 0 0 0 0 0 0 0 0 0.5 0 0.15 0.3 0.05;
+}
+probability (RecommendedElectives | ElectivesAvailable) {
+   (Bayesian_Inference_and_Gaussian_Process) 1 0 0 0 0 0 0 0 0 0 0 0 0 0;
+   (Natural_Language_Processing) 0 1 0 0 0 0 0 0 0 0 0 0 0 0;
+   (Deep_Learning_for_Robot_Vision) 0 0 1 0 0 0 0 0 0 0 0 0 0 0;
+   (Deep_Learning_Foundations) 0 0 0 1 0 0 0 0 0 0 0 0 0 0;
+   (Probabilistic_Reasoning) 0 0 0 0 1 0 0 0 0 0 0 0 0 0;
+   (Robot_Manipulation) 0 0 0 0 0 1 0 0 0 0 0 0 0 0;
+   (Entrepreneurship_in_Robotics_and_Computer_Science) 0 0 0 0 0 0 1 0 0 0 0 0 0 0;
+   (Human_centered_interaction_in_robotics) 0 0 0 0 0 0 0 1 0 0 0 0 0 0;
+   (Advanced_Control) 0 0 0 0 0 0 0 0 1 0 0 0 0 0;
+   (Cognitive_Robotics) 0 0 0 0 0 0 0 0 0 1 0 0 0 0;
+   (Multiagent_and_Agent_Systems) 0 0 0 0 0 0 0 0 0 0 1 0 0 0;
+   (Learning_and_Adaptivity) 0 0 0 0 0 0 0 0 0 0 0 1 0 0;
+   (Adaptive_Signal_Processing) 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+   (Evolutionary_Computation_Theory_and_Application) 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+}
+
