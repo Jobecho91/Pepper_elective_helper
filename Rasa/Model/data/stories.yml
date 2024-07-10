@@ -1,0 +1,695 @@
+version: "3.1"
+
+stories:
+  - story: greet and ask how are you
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+
+  - story: user is happy and chooses AI
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses AI
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses MRC
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses MRC
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses AST
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses AST
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses AMR
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses AMR
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user declines survey
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: deny
+      - action: utter_survey_decline
+
+  - story: user chooses AI and work in AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses AI and work in AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is unhappy and chooses AI and work in robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses MRC and work in AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses MRC and work in robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses AST and work in AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses AST and work in robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user is happy and chooses AMR and work in AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user is unhappy and chooses AMR and work in robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+          
+  - story: user chooses AI and work in AI industry - summer
+    steps:
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user chooses AI and work in robotics industry - winter
+    steps:
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user chooses MRC and work in AI industry - summer
+    steps:
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user chooses MRC and work in robotics industry - winter
+    steps:
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user chooses AST and work in AI industry - summer
+    steps:
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user chooses AST and work in robotics industry - winter
+    steps:
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - story: user chooses AMR and work in AI industry - summer
+    steps:
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - story: user chooses AMR and work in robotics industry - winter
+    steps:
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+          
+  
+
+  - story: handle abusive language
+    steps:
+      - intent: abusive_language
+      - action: utter_abusive_language
+

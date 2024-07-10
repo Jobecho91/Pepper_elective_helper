@@ -1,0 +1,183 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hi
+      - hello
+      - good morning
+      - good evening
+      - hey
+
+  - intent: mood_great
+    examples: |
+      - I am feeling great
+      - I am doing well
+      - I am good
+      - I am very well
+      - I feel awesome
+      - I am great
+      - Fine
+
+  - intent: mood_unhappy
+    examples: |
+      - I am not feeling well
+      - I am sad
+      - I am not doing well
+      - I feel bad
+      - I am unhappy
+
+  - intent: affirm
+    examples: |
+      - yes
+      - sure
+      - absolutely
+      - of course
+      - definitely
+
+  - intent: deny
+    examples: |
+      - no
+      - not now
+      - maybe later
+      - I don't think so
+
+  - intent: AI
+    examples: |
+      - I like AI
+      - I love AI
+      - AI
+      - My favorite was AI
+      - I enjoyed AI
+      - Artificial Intelligence
+
+  - intent: MRC
+    examples: |
+      - I like MRC
+      - I love MRC
+      - MRC
+      - My favorite was MRC
+      - I enjoyed MRC
+      - Mathematics for Robot and Control
+
+  - intent: AST
+    examples: |
+      - I like AST
+      - I love AST
+      - AST
+      - My favorite was AST
+      - I enjoyed AST
+      - Advanced Software Technology
+
+  - intent: AMR
+    examples: |
+      - I like AMR
+      - I love AMR
+      - AMR
+      - My favorite was AMR
+      - I enjoyed AMR
+      - Autonomous Mobile Robots
+
+  - intent: work_future_robotic
+    examples: |
+      - I want to work in the robotic industry
+      - My goal is to join the robotics industry
+      - I aim to work in the robotics industry
+      - I prefer the robotic industry
+      - I choose the robotic industry for my career
+      - Robotics
+      - Robots
+      - Kelo
+      - Tesla
+      - Boston
+
+  - intent: work_future_AI
+    examples: |
+      - I would like to work in the AI industry
+      - I aim to work in AI industry
+      - I choose AI industry for my career
+      - My goal is to join the AI industry
+      - I prefer the AI industry
+      - AI
+      - Google
+      - ChatGPT
+
+
+#ABUSIVE LANGUAGE
+  - intent: abusive_language
+    examples: |
+      - You are stupid
+      - Shut up
+      - You idiot
+      - You moron
+      - What a loser
+      - Get lost
+      - You're worthless
+      - You're pathetic
+      - Go to hell
+      - You're an imbecile
+      - You piece of trash
+      - You're a joke
+      - You're a fool
+      - You're a disgrace
+      - You make me sick
+      - I hate you
+      - You're disgusting
+      - Screw you
+      - You're a freak
+      - You're a waste of space
+      - You're a nobody
+      - You have no brains
+      - You're a parasite
+      - You're a pest
+      - You're a failure
+      - You suck
+      - You are garbage
+      - You're a nobody
+      - You're useless
+      - You're a scumbag
+      - You are vile
+      - You are revolting
+      - You're a monster
+      - You're horrible
+      - You're an animal
+      - You're the worst
+      - You make me want to vomit
+      - You should be ashamed of yourself
+      - You're a freak of nature
+      - You're a disaster
+      - You're a menace
+      - You're a fraud
+      - You're a liar
+      - You're a cheat
+      - You're despicable
+      - You're a disgrace to humanity
+      - You're a blot on society
+      - You're a disgrace to your family
+      - You're beneath me
+      - You're subhuman
+      - You're a waste of breath
+      - You're a waste of resources
+      - You're a joke of a person
+      - You're a piece of shit
+      - You're an asshole
+      - You're a bastard
+      - You're a son of a bitch
+      - You're a dick
+      - You're a cunt
+      - You're a prick
+      - You're a douchebag
+      - You're a shithead
+      - You're a twat
+      - You're a wanker
+      - You're a fucker
+      - Fuck you
+      - Go fuck yourself
+      - You're a turd
+      - You're a rat
+      - You're a failure
+      - You're a flop
+      - You're a fiasco
+      - You're a mess
+      - You're a blunder
+

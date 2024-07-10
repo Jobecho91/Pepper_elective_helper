@@ -1,0 +1,111 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - AI
+  - MRC
+  - AST
+  - AMR
+  - work_future_robotic
+  - work_future_AI
+  - abusive_language
+  - study_morning
+  - study_afternoon
+  - study_winter
+  - study_summer
+  - mood_great
+  - mood_unhappy
+  - affirm
+  - deny
+
+entities:
+  - subject
+  - work
+  - schedule
+  - semester
+
+slots:
+  subject:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: subject
+  work:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: work
+  schedule:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: schedule
+  semester:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: semester
+
+responses:
+  utter_greet:
+    - text: "Hello! My name is blue dot robot, I was designed to help student to choose the correct elective subjets based on some preferences"
+
+  utter_how_are_you:
+    - text: "How are you feeling today?"
+
+  utter_ask_survey:
+    - text: "Great, I'm excited to help you choosing electives!... Do you need my assistance?"
+
+  utter_survey_decline:
+    - text: "Alright, no problem. Have a nice day!"
+#abusive
+  utter_abusive_language:
+    - text: "Please be respectful."
+
+  utter_ask_subject:
+    - text: "What is your favorite subject? M.R.C., A.I., A.M.R., A.S.T.?"
+
+  utter_AI:
+    - text: "AI That is interesting because I use an AI model for this conversation."
+
+  utter_MRC:
+    - text: "Mathematics then you are a smart guy, M.R.C. is challenging for most of the students."
+
+  utter_AST:
+    - text: "Software development is a good choice. I see.. you are interested in Software."
+
+  utter_AMR:
+    - text: "Autonomous Robots nice choice, robotics is the future."
+
+  utter_ask_work_future:
+    - text: "Where would you like to work in the future? Robotic industry or A.I. Field?"
+
+  utter_work_robotics:
+    - text: "Robotics That's interesting. I also find the robotics industry exciting."
+
+  utter_work_AI:
+    - text: "Artificial Intelligent field, I'm glad to hear that you are interested in  A.I."
+
+  utter_ask_schedule:
+    - text: "When would you like to study, in the morning or afternoon?"
+
+  utter_schedule_morning:
+    - text: "morning , So you are a morning person? That's perfect! Studies have shown that most people learn more in the morning."
+
+  utter_schedule_afternoon:
+    - text: "afternoon , nice choice, you are an owl."
+
+  utter_ask_semester:
+    - text: "Do you want to study in the summer or winter semester?"
+
+  utter_summer:
+    - text: "summer is the best, I also love the warm weather to heat my circuits."
+
+  utter_winter:
+    - text: "winter, I love the winter, going out with friends to drink gluhwein."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: True
+
