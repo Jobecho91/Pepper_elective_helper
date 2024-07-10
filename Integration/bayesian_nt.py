@@ -2,17 +2,17 @@ import pyAgrum as gum
 import pyAgrum.lib.notebook as gnb
 import matplotlib.pyplot as plt
 
-# Crear la red bayesiana
+# Bayesian Network 
 bn = gum.BayesNet('ElectiveRecommendation')
 
-# Añadir variables
+# Avariables Addition
 favorite_subject = bn.add(gum.LabelizedVariable('FavoriteSubject', 'Favorite Subject', ['AI', 'Mathematics', 'Software', 'Autonomous']))
 work_preference = bn.add(gum.LabelizedVariable('WorkPreference', 'Work Preference', ['Artificial', 'Robotics']))
 semester = bn.add(gum.LabelizedVariable('Semester', 'Semester', ['winter', 'summer']))
 schedule = bn.add(gum.LabelizedVariable('Schedule', 'Schedule', ['morning', 'afternoon']))
 elective_preference = bn.add(gum.LabelizedVariable('ElectivePreference', 'Elective Preference', ['EP_AI', 'EP_MRC', 'EP_AST', 'EP_AMR']))
 
-# Materias electivas basadas en la imagen
+# List of electives subjects
 electives = [
     'Bayesian_Inference_and_Gaussian_Process', 'Natural_Language_Processing', 
     'Deep_Learning_for_Robot_Vision', 'Deep_Learning_Foundations', 
@@ -26,7 +26,7 @@ electives = [
 electives_available = bn.add(gum.LabelizedVariable('ElectivesAvailable', 'Electives Available', electives))
 recommended_electives = bn.add(gum.LabelizedVariable('RecommendedElectives', 'Recommended Electives', electives))
 
-# Añadir arcos
+# Relation between nodes
 bn.addArc(favorite_subject, elective_preference)
 bn.addArc(work_preference, elective_preference)
 bn.addArc(elective_preference, electives_available)
@@ -34,8 +34,8 @@ bn.addArc(semester, electives_available)
 bn.addArc(schedule, electives_available)
 bn.addArc(electives_available, recommended_electives)
 
-# Definir tablas de probabilidad condicional (CPT)
-# CPT para ElectivePreference basadas en las materias favoritas y preferencia de trabajo
+# Conditional probability tables (CPT)
+# CPT for ElectivePreference based on favorite subjects and work preference
 bn.cpt(elective_preference)[{'FavoriteSubject': 'AI', 'WorkPreference': 'Artificial'}] = [0.7, 0.1, 0.15, 0.05]
 bn.cpt(elective_preference)[{'FavoriteSubject': 'AI', 'WorkPreference': 'Robotics'}] = [0.5, 0.2, 0.1, 0.2]
 bn.cpt(elective_preference)[{'FavoriteSubject': 'Mathematics', 'WorkPreference': 'Artificial'}] = [0.25, 0.5, 0.05, 0.2]
@@ -45,13 +45,12 @@ bn.cpt(elective_preference)[{'FavoriteSubject': 'Software', 'WorkPreference': 'R
 bn.cpt(elective_preference)[{'FavoriteSubject': 'Autonomous', 'WorkPreference': 'Artificial'}] = [0.3, 0.15, 0.05, 0.5]
 bn.cpt(elective_preference)[{'FavoriteSubject': 'Autonomous', 'WorkPreference': 'Robotics'}] = [0.1, 0.25, 0.05, 0.6]
 
-# CPT para ElectivesAvailable basado en las preferencias de electiva, semestre y horario
-# Ajustar las probabilidades de acuerdo a los datos específicos de la imagen
-# Imprimir CPT de ElectivePreference
-print("CPT for ElectivePreference:")
-print(bn.cpt(elective_preference))
 
 
+#print("CPT for ElectivePreference:")
+#print(bn.cpt(elective_preference))
+
+# CPT for ElectivesAvailable based on elective, semester, and schedule preferences
 # EP_AI
 bn.cpt(electives_available)[{'ElectivePreference': 'EP_AI', 'Semester': 'winter', 'Schedule': 'morning'}] = [
     0.09, 0.40, 0.00, 0.00, 0.05, 0.05, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
@@ -107,11 +106,11 @@ bn.cpt(electives_available)[{'ElectivePreference': 'EP_AMR', 'Semester': 'summer
 bn.cpt(electives_available)[{'ElectivePreference': 'EP_AMR', 'Semester': 'summer', 'Schedule': 'afternoon'}] = [
     0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.50, 0.00, 0.15, 0.30, 0.05
 ]
-# CPT para RecommendedElectives
+# CPT for RecommendedElectives
 for elective in electives:
     bn.cpt(recommended_electives)[{'ElectivesAvailable': elective}] = [1 if elective == e else 0 for e in electives]
 
-# Guardar la red bayesiana
+# Save Bayesian Network
 gum.saveBN(bn, 'ElectiveRecommendation.bif')
 
 
@@ -123,13 +122,13 @@ def recommend_subjects(user_preferences):
     semester = user_preferences["semester"]
     schedule = user_preferences["schedule"]
 
-        # Cargar la red bayesiana
+    
     bn = gum.loadBN('ElectiveRecommendation.bif')
 
-    # Crear el objeto de inferencia
+    # Inference Object
     ie = gum.LazyPropagation(bn)
 
-    # Establecer la evidencia para las nuevas preferencias
+    # Evidence for preference
     ie.setEvidence({
         'FavoriteSubject': favorite_subject,
         'WorkPreference': work_preference,
@@ -137,27 +136,24 @@ def recommend_subjects(user_preferences):
         'Schedule': schedule
     })
 
-    # Realizar la inferencia
+    # Inferece
     ie.makeInference()
 
-    # Obtener las probabilidades de las materias recomendadas
+    # probabilities of recommended subjects
     recommended = ie.posterior('RecommendedElectives')
 
-    # Mostrar las probabilidades de las materias recomendadas
-    print(recommended)
+    
+    #print(recommended)
 
-    variable = recommended.variable(0)  # obtener la primera variable
-    labels = variable.labels()           # obtener las etiquetas de la variable
+    #extracting labels and subjects
+    variable = recommended.variable(0)  
+    labels = variable.labels()           
 
     values = recommended[:]
 
-    # Crear una lista de tuples (materia, probabilidad)
+    #extracting the top 3 subjects
     subject_probabilities = list(zip(labels, values))
-
-    # Ordenar la lista de tuples por probabilidad en orden descendente
     subject_probabilities.sort(key=lambda x: x[1], reverse=True)
-
-    # Obtener las tres probabilidades más altas con el respectivo nombre de la materia
     top_3_subjects = subject_probabilities[:3]
 
     subj1 = top_3_subjects[0][0].replace("_"," ")
@@ -167,10 +163,10 @@ def recommend_subjects(user_preferences):
     return subj1, subj2, subj3
 
 '''
-favorite_subject = input("Ingrese su materia favorita (AI, MRC, AST, AMR): ")
-work_preference = input("Ingrese su preferencia de trabajo (AI, Robotics): ")
-semester = input("Ingrese el semestre preferido (winter, summer): ")
-schedule = input("Ingrese su horario preferido (morning, afternoon): ")
+favorite_subject = input("Enter your favorite subject (AI, MRC, AST, AMR): ")
+work_preference = input("Enter your work preference (AI, Robotics): ")
+semester = input("Enter your semester preference (winter, summer): ")
+schedule = input("Enter your preferred schedule(morning, afternoon): ")
 '''
 #user_preferences = {"subject": "Mathematics", "work": "Artificial", "schedule": "afternoon", "semester": "summer"}
 #val1,val2,val3 = recommend_subjects(user_preferences)
