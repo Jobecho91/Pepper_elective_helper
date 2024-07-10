@@ -3,11 +3,11 @@ network "ElectiveRecommendation" {
 }
 
 variable FavoriteSubject {
-   type discrete[4] {AI, MRC, AST, AMR};
+   type discrete[4] {AI, Mathematics, Software, Autonomous};
 }
 
 variable WorkPreference {
-   type discrete[2] {AI, Robotics};
+   type discrete[2] {Artificial, Robotics};
 }
 
 variable Semester {
@@ -43,14 +43,14 @@ probability (Schedule) {
    table 0 0;
 }
 probability (ElectivePreference | FavoriteSubject, WorkPreference) {
-   (AI, AI) 0.7 0.1 0.15 0.05;
-   (MRC, AI) 0.25 0.5 0.05 0.2;
-   (AST, AI) 0.1 0.05 0.8 0.05;
-   (AMR, AI) 0.3 0.15 0.05 0.5;
+   (AI, Artificial) 0.7 0.1 0.15 0.05;
+   (Mathematics, Artificial) 0.25 0.5 0.05 0.2;
+   (Software, Artificial) 0.1 0.05 0.8 0.05;
+   (Autonomous, Artificial) 0.3 0.15 0.05 0.5;
    (AI, Robotics) 0.5 0.2 0.1 0.2;
-   (MRC, Robotics) 0.2 0.4 0.1 0.3;
-   (AST, Robotics) 0.05 0.3 0.35 0.3;
-   (AMR, Robotics) 0.1 0.25 0.05 0.6;
+   (Mathematics, Robotics) 0.2 0.4 0.1 0.3;
+   (Software, Robotics) 0.05 0.3 0.35 0.3;
+   (Autonomous, Robotics) 0.1 0.25 0.05 0.6;
 }
 probability (ElectivesAvailable | ElectivePreference, Semester, Schedule) {
    (EP_AI, winter, morning) 0.09 0.4 0 0 0.05 0.05 0 0 0 0 0 0 0 0;
