@@ -27,10 +27,44 @@ Pepper Elective Helper is a project aimed at enhancing the interaction between h
     ```bash
     pip install -r requirements.txt
 
-##Usage
+
+## Usage
 
 1. Ensure all dependencies are installed.
 
 2. Run the main script to initiate the project:
 ```bash
     python main.py
+```
+## RASA Integration
+
+This project uses RASA for advanced dialogue management. Due to file size constraints, the full RASA model files are not included in this repository. However, you can upload the basic files needed to train the RASA model.
+## Training the RASA Model
+
+1. Ensure you have RASA installed:
+```bash
+    pip install rasa
+```
+For more information check RASA documentation- [RASA](https://rasa.com/docs/rasa/installation/installing-rasa-open-source/)
+
+2. Upload the necessary training files (nlu.yml, stories.yml, domain.yml, etc.) to the rasa directory.
+
+3. Train the RASA model
+```bash
+    rasa train
+```
+4. Run the RASA server:
+```bash
+    rasa run actions
+    rasa shell
+```
+
+# License
+
+Distributed under the MGNU GPL 3.0. See `LICENSE` for more information.
+ 
+## References
+
+- [RASA Documentation](https://rasa.com/docs/)
+- [OpenCV Documentation](https://docs.opencv.org/)
+- [PyAgrum Documentation](https://pyagrum.readthedocs.io/en/latest/)
