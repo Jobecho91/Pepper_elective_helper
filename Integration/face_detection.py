@@ -9,7 +9,7 @@ def detect_faces_and_greet(pepper, face_cascade, cap):
     while True:
         ret, frame = cap.read()
         if not ret:
-            print("Error: No se pudo leer el frame.")
+            print("Error: I can not readd the frme.") # Error: Could not read the frame
             break
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -18,20 +18,20 @@ def detect_faces_and_greet(pepper, face_cascade, cap):
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-            # Calcular el centro del rostro
+            # Calculate the center of the face
             center_x = x + w / 2
             center_y = y + h / 2
             image_center_x = frame.shape[1] / 2
             image_center_y = frame.shape[0] / 2
 
-            # Calcular el ángulo para mover la cabeza de Pepper
+            # Calculate the yaw and pitch angles to move Pepper's head
             yaw = -(center_x - image_center_x) / image_center_x * 0.5
             pitch = (center_y - image_center_y) / image_center_y * 0.5  # Invertir el signo de pitch
 
-            # Mover la cabeza de Pepper hacia el rostro detectado
+            # Move Pepper's head to follow the face
             pepper.setAngles(["HeadYaw", "HeadPitch"], [yaw, pitch], 0.2)
 
-            # Saludar si el rostro está en el centro de la cámara y no ha saludado aún
+            # Say hello if the face is in the center of the image
             if abs(center_x - image_center_x) < 50 and abs(center_y - image_center_y) < 50 and not has_waved:
                 response_texts, _ = get_rasa_response("hello")
                 if response_texts:

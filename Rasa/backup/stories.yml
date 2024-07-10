@@ -1,0 +1,324 @@
+version: "3.1"
+
+stories:
+  - story: greet and ask how are you - happy path - AI and AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+        entities:
+          - subject: "AI"
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: greet and ask how are you - happy path - MRC and robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+        entities:
+          - subject: "MRC"
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: greet and ask how are you - happy path - AST and AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+        entities:
+          - subject: "AST"
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: greet and ask how are you - happy path - AMR and robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+        entities:
+          - subject: "AMR"
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: greet and ask how are you - unhappy path - AI and AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+        entities:
+          - subject: "AI"
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: greet and ask how are you - unhappy path - MRC and robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+        entities:
+          - subject: "MRC"
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: greet and ask how are you - unhappy path - AST and AI industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+        entities:
+          - subject: "AST"
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: greet and ask how are you - unhappy path - AMR and robotics industry
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+        entities:
+          - subject: "AMR"
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: user declines survey
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: deny
+      - action: utter_survey_decline
+
+  - story: user is unhappy and declines survey
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: deny
+      - action: utter_survey_decline
+
+  - story: handle abusive language
+    steps:
+      - intent: abusive_language
+      - action: utter_abusive_language
+
+  - story: user is happy and prefers AI and AI industry
+    steps:
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: user is happy and prefers MRC and robotics industry
+    steps:
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: user is happy and prefers AST and AI industry
+    steps:
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: user is happy and prefers AMR and robotics industry
+    steps:
+      - intent: mood_great
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: user is unhappy and prefers AI and AI industry
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: user is unhappy and prefers MRC and robotics industry
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+
+  - story: user is unhappy and prefers AST and AI industry
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+
+  - story: user is unhappy and prefers AMR and robotics industry
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+      - intent: affirm
+      - action: utter_ask_subject
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+

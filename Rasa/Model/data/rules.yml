@@ -1,0 +1,116 @@
+version: "3.1"
+
+rules:
+  - rule: greet and ask how are you
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_how_are_you
+
+  - rule: user is happy
+    steps:
+      - intent: mood_great
+      - action: utter_ask_survey
+
+  - rule: user is unhappy
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_survey
+
+  - rule: user accepts survey
+    steps:
+      - intent: affirm
+      - action: utter_ask_subject
+
+  - rule: user declines survey
+    steps:
+      - intent: deny
+      - action: utter_survey_decline
+
+  - rule: respond to AI subject
+    steps:
+      - intent: AI
+      - action: utter_AI
+      - slot_was_set:
+          - subject: "AI"
+      - action: utter_ask_work_future
+
+  - rule: respond to MRC subject
+    steps:
+      - intent: MRC
+      - action: utter_MRC
+      - slot_was_set:
+          - subject: "MRC"
+      - action: utter_ask_work_future
+
+  - rule: respond to AST subject
+    steps:
+      - intent: AST
+      - action: utter_AST
+      - slot_was_set:
+          - subject: "AST"
+      - action: utter_ask_work_future
+
+  - rule: respond to AMR subject
+    steps:
+      - intent: AMR
+      - action: utter_AMR
+      - slot_was_set:
+          - subject: "AMR"
+      - action: utter_ask_work_future
+
+  - rule: respond to work in AI
+    steps:
+      - intent: work_future_AI
+      - action: utter_work_AI
+      - slot_was_set:
+          - work: "AI"
+      - action: utter_ask_schedule
+
+  - rule: respond to work in robotics
+    steps:
+      - intent: work_future_robotic
+      - action: utter_work_robotics
+      - slot_was_set:
+          - work: "robotics"
+      - action: utter_ask_schedule
+
+  - rule: ask for schedule
+    steps:
+      - action: utter_ask_schedule
+
+  - rule: respond to study in the morning
+    steps:
+      - intent: study_morning
+      - action: utter_schedule_morning
+      - slot_was_set:
+          - schedule: "morning"
+      - action: utter_ask_semester
+
+  - rule: respond to study in the afternoon
+    steps:
+      - intent: study_afternoon
+      - action: utter_schedule_afternoon
+      - slot_was_set:
+          - schedule: "afternoon"
+      - action: utter_ask_semester
+
+  - rule: respond to semester winter
+    steps:
+      - intent: study_winter
+      - action: utter_winter
+      - slot_was_set:
+          - semester: "winter"
+
+  - rule: respond to semester summer
+    steps:
+      - intent: study_summer
+      - action: utter_summer
+      - slot_was_set:
+          - semester: "summer"
+
+  - rule: handle abusive language
+    steps:
+      - intent: abusive_language
+      - action: utter_abusive_language
+

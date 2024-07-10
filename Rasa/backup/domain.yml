@@ -1,0 +1,99 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - AI
+  - MRC
+  - AST
+  - AMR
+  - work_future_robotic
+  - work_future_AI
+  - abusive_language
+
+entities:
+  - subject
+  - work
+
+slots:
+  subject:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: subject
+  work:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: work
+
+responses:
+  utter_greet:
+    - text: "Hello! I my blue_dot robot"
+
+  utter_how_are_you:
+    - text: "How are you feeling today?"
+
+  utter_ask_survey:
+    - text: "Do you need help, in lloking a new elective?"
+
+  utter_survey_decline:
+    - text: "Alright, no problem. Have a nice day!"
+
+  utter_ask_subject:
+    - text: "What is your favorite subject? MRC, AI, AMR, AST?"
+
+  utter_AI:
+    - text: "AI That is interesting because I use an AI model for this conversation."
+
+  utter_MRC:
+    - text: "MRC Oh! you are a smart guy, MRC is challenging for most of the students."
+
+  utter_AST:
+    - text: "AST is a good choice. I see.. you are interested in Software."
+
+  utter_AMR:
+    - text: "AMR Nice choice, robotics is the future."
+
+  utter_ask_work_future:
+    - text: "Where would you like to work in the future? Robotic industry or AI industry?"
+
+  utter_work_robotics:
+    - text: "That's interesting. I also find the robotics industry exciting."
+
+  utter_work_AI:
+    - text: "I'm glad to hear that you are interested in the AI industry."
+  
+  
+  utter_ask_schendule:
+    -text: "When would you like to study in the morning or afteernoon?"
+    
+  utter_schendule_morning:
+    - text: "So you are a morning person? thats perfect studies have shown that most of people learn more in the morning"
+
+  utter_schendule_afternoon:
+    - text: "Nice choise, you are an owl"
+
+  utter_ask_sumer_winter:
+    - text: "Do you want to study in summer or winter semester?"
+    
+  utter_summer:
+    - text: "I also do love the heat weather"
+
+  utter_winter:
+    - text: "I love the winter, going out with friends to drink gluwein"
+    
+
+  
+
+  utter_abusive_language:
+    - text: "Please refrain from using abusive language."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: True
+
