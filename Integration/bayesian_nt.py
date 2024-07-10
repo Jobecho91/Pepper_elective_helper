@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 bn = gum.BayesNet('ElectiveRecommendation')
 
 # Añadir variables
-favorite_subject = bn.add(gum.LabelizedVariable('FavoriteSubject', 'Favorite Subject', ['AI', 'MRC', 'AST', 'AMR']))
-work_preference = bn.add(gum.LabelizedVariable('WorkPreference', 'Work Preference', ['AI', 'Robotics']))
+favorite_subject = bn.add(gum.LabelizedVariable('FavoriteSubject', 'Favorite Subject', ['AI', 'Mathematics', 'Software', 'Autonomous']))
+work_preference = bn.add(gum.LabelizedVariable('WorkPreference', 'Work Preference', ['Artificial', 'Robotics']))
 semester = bn.add(gum.LabelizedVariable('Semester', 'Semester', ['winter', 'summer']))
 schedule = bn.add(gum.LabelizedVariable('Schedule', 'Schedule', ['morning', 'afternoon']))
 elective_preference = bn.add(gum.LabelizedVariable('ElectivePreference', 'Elective Preference', ['EP_AI', 'EP_MRC', 'EP_AST', 'EP_AMR']))
@@ -36,14 +36,14 @@ bn.addArc(electives_available, recommended_electives)
 
 # Definir tablas de probabilidad condicional (CPT)
 # CPT para ElectivePreference basadas en las materias favoritas y preferencia de trabajo
-bn.cpt(elective_preference)[{'FavoriteSubject': 'AI', 'WorkPreference': 'AI'}] = [0.7, 0.1, 0.15, 0.05]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'AI', 'WorkPreference': 'Artificial'}] = [0.7, 0.1, 0.15, 0.05]
 bn.cpt(elective_preference)[{'FavoriteSubject': 'AI', 'WorkPreference': 'Robotics'}] = [0.5, 0.2, 0.1, 0.2]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'MRC', 'WorkPreference': 'AI'}] = [0.25, 0.5, 0.05, 0.2]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'MRC', 'WorkPreference': 'Robotics'}] = [0.2, 0.4, 0.1, 0.3]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'AST', 'WorkPreference': 'AI'}] = [0.1, 0.05, 0.8, 0.05]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'AST', 'WorkPreference': 'Robotics'}] = [0.05, 0.3, 0.35, 0.3]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'AMR', 'WorkPreference': 'AI'}] = [0.3, 0.15, 0.05, 0.5]
-bn.cpt(elective_preference)[{'FavoriteSubject': 'AMR', 'WorkPreference': 'Robotics'}] = [0.1, 0.25, 0.05, 0.6]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Mathematics', 'WorkPreference': 'Artificial'}] = [0.25, 0.5, 0.05, 0.2]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Mathematics', 'WorkPreference': 'Robotics'}] = [0.2, 0.4, 0.1, 0.3]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Software', 'WorkPreference': 'Artificial'}] = [0.1, 0.05, 0.8, 0.05]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Software', 'WorkPreference': 'Robotics'}] = [0.05, 0.3, 0.35, 0.3]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Autonomous', 'WorkPreference': 'Artificial'}] = [0.3, 0.15, 0.05, 0.5]
+bn.cpt(elective_preference)[{'FavoriteSubject': 'Autonomous', 'WorkPreference': 'Robotics'}] = [0.1, 0.25, 0.05, 0.6]
 
 # CPT para ElectivesAvailable basado en las preferencias de electiva, semestre y horario
 # Ajustar las probabilidades de acuerdo a los datos específicos de la imagen
@@ -116,7 +116,12 @@ gum.saveBN(bn, 'ElectiveRecommendation.bif')
 
 
 
-def recommend_subjects(favorite_subject , work_preference , semester , schedule ):
+def recommend_subjects(user_preferences):
+
+    favorite_subject = user_preferences["subject"]
+    work_preference = user_preferences["work"]
+    semester = user_preferences["semester"]
+    schedule = user_preferences["schedule"]
 
         # Cargar la red bayesiana
     bn = gum.loadBN('ElectiveRecommendation.bif')
@@ -161,17 +166,16 @@ def recommend_subjects(favorite_subject , work_preference , semester , schedule 
 
     return subj1, subj2, subj3
 
-
+'''
 favorite_subject = input("Ingrese su materia favorita (AI, MRC, AST, AMR): ")
 work_preference = input("Ingrese su preferencia de trabajo (AI, Robotics): ")
 semester = input("Ingrese el semestre preferido (winter, summer): ")
 schedule = input("Ingrese su horario preferido (morning, afternoon): ")
+'''
+#user_preferences = {"subject": "Mathematics", "work": "Artificial", "schedule": "afternoon", "semester": "summer"}
+#val1,val2,val3 = recommend_subjects(user_preferences)
+#print(val1)
+#print(val2)
+#print(val3)
 
-
-val1,val2,val3 = recommend_subjects(favorite_subject = "AI",work_preference = "AI", semester = "winter", schedule = "afternoon")
-
-
-print(val1)
-print(val2)
-print(val3)
 
