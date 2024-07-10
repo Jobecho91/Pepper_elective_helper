@@ -2,10 +2,10 @@ import cv2
 import qibullet
 import threading
 from face_detection import detect_faces_and_greet
-from pepper_interactions import wave_hand_and_say_text, say_text
+from pepper_interactions import wave_hand_and_say_text, say_text, gesture_hand_and_say_text
 from rasa_interactions import get_rasa_response
 
-
+#Funcionalily is not workng as expected cause we can't get the first word of the response.
 def update_user_data(user_data, entities):
     for entity_list in entities:
         for entity in entity_list:
@@ -19,19 +19,41 @@ def update_user_data(user_data, entities):
                 user_data['semester'] = entity['value']
     return user_data
 
+#Alternative function to update the preferences takes the first word of the response
+def update_pref(user_preferences, first_word):
+    #as dict
+   
+    
+    if first_word in ["AI", "Matemathics", "Software", "Autonomous"]:
+        user_preferences["subject"] = first_word
+    elif first_word in ["Robots", "Artificial"]:
+        user_preferences["work"] = first_word
+    elif first_word in ["Morning", "Afternoon"]:
+        user_preferences["schedule"] = first_word
+    elif first_word in ["Winter", "Summer"]:
+        user_preferences["semester"] = first_word
+
+    return user_preferences
+
 def conversation_loop(pepper):
-    user_data = {"subject": None, "work": None, "schedule": None, "semester": None}
+    #user_data = {"subject": None, "work": None, "schedule": None, "semester": None}
+    user_preferences = {"subject": None, "work": None, "schedule": None, "semester": None}
     greeted = False
     while True:
         user_input = input("You: ").strip().lower()
         if user_input in ['exit', 'quit', 'q']:
             break
         response_texts, entities = get_rasa_response(user_input)
-        print("entities:", entities)
-        print(f"Response texts: {response_texts}")  # Depuración adicional
+        #print("entities:", entities)
+        print(f"Response texts: {response_texts}")
+        
         if response_texts and isinstance(response_texts, list):
+
+            preferences = update_pref(user_preferences, response_texts[0].split()[0]) # ALternative function to update the preferences
+            print("Preferences:", preferences)
+            
             if not greeted:
-                wave_hand_and_say_text(pepper, response_texts[0])
+                gesture_hand_and_say_text(pepper, response_texts[0])
                 greeted = True
             else:
                 say_text(pepper, response_texts[0])
@@ -40,8 +62,8 @@ def conversation_loop(pepper):
                 say_text(pepper, response_text)
 
 
-        # Aquí puedes hacer lo que necesites con los datos almacenados en user_data
-        print(user_data)
+
+        #print(user_data)
 
 
 def main():

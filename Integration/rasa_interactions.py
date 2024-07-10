@@ -1,5 +1,3 @@
-
-
 import requests
 
 def get_rasa_response(message):
@@ -10,6 +8,7 @@ def get_rasa_response(message):
         response.raise_for_status()  # Esto arrojará una excepción para errores HTTP
         messages = response.json()
         if messages:
+            #print("MESSEEE:", messages)
             texts = [msg.get("text") for msg in messages if msg.get("text")]
             entities = [msg.get("entities", []) for msg in messages if msg.get("entities")]
             return texts, entities
